@@ -13,9 +13,9 @@
 
 <body>
     <header class="title is-2 mb-3">
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" href="#">The Travellers</a>
+                <a class="navbar-item" href="#">The Traveller</a>
             </div>
         </nav>
     </header>
@@ -59,31 +59,61 @@
             </div>
         </section>
 
+        <section>
+            <div class="title is-3 ml-3 mb-3 attractions">Events On / Attractions:</div>
+        </section>
 
-        <div class="attractions"></div>
+        <section class="column mt-5" id="iternary-section">
+            <p class="title is-3 ">Iternary:</p>
+            <div class="card columns ml-3 iternary">
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Day 1</p>
+                            <p class="subtitle">Drag & drop your plans</p>
+                            <br>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Day 2</p>
+                            <p class="subtitle"></p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Day 3</p>
+                            <p class="subtitle"></p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Day 4</p>
+                            <p class="subtitle"></p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Day 5</p>
+                            <p class="subtitle"></p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="card columns  iternary">
-            <div class="column" id="dayOne">Day 1</div>
-            <div class="column" id="dayTwo">Day 2</div>
-            <div class="column" id="dayThree">Day 3</div>
-            <div class="column" id="dayFour">Day 4</div>
-            <div class="column" id="dayFive">Day 5</div>
+        <section>
+            <div class="card column is-2.5 packingList">
+                <h2 class="title is-3">&#129523; Packing List:</h2>
+                <form id="tobring-form" method="POST">
+                    <label class="subtitle is-5" for="tobring-text">I need to bring: </label>
+                    <input type="text" placeholder="Phone charger" name="tobring-text" id="tobring-text" />
+                </form>
+                <p id="totalItems">Total items: <span id="tobring-count">0</span></p>
+                <ul id="tobring-list"></ul>
+            </div>
+        </section>
 
-        </div>
-
-        <div class="card column is-4 is-offset-7 packingList">
-            <h2 class="title is-3">&#129523; Packing List:</h2>
-            <form id="tobring-form" method="POST">
-                <label class="subtitle is-5" for="tobring-text">I need to bring: </label>
-                <input type="text" placeholder="Phone charger" name="tobring-text" id="tobring-text" />
-            </form>
-            <p>Total items: <span id="tobring-count">0</span></p>
-            <ul id="tobring-list"></ul>
-
-        </div>
-        </div>
-
-    </main>
 
     </main>
 
