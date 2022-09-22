@@ -9,7 +9,7 @@
     background-color: var(--lightgray) !important;
 }
 
-.forecast-div {
+.forecast-div, .hotel-div {
     background-color: var(--lightgray);
     height: 250px;
 }
