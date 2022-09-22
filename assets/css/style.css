@@ -8,3 +8,8 @@
     color: var(--darkgray) !important;
     background-color: var(--lightgray) !important;
 }
+
+.forecast-div {
+    background-color: var(--lightgray);
+    height: 250px;
+}
