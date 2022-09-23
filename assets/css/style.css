@@ -1,0 +1,34 @@
+:root {
+    --lightgray: hsl(0, 0%, 96%);
+    --darkgray: #363636;
+    --border-radius: .3rem;
+}
+
+
+.navbar-item:hover {
+    color: var(--darkgray) !important;
+    background-color: var(--lightgray) !important;
+}
+
+.forecast-div, .hotel-div {
+    background-color: var(--lightgray);
+    height: 250px;
+}
+
+.packingList{
+    height: 200px; /*can change to auto once js has been completed*/
+    border-radius: 8%;
+    box-shadow: 10px lightslategray;
+    position:fixed;
+    bottom:30px;
+    right:0;
+}
+
+.box{
+    height: 700px;
+    background-color:lavender;
+}
+
+.iternary .title{
+    text-decoration: underline;
+}
