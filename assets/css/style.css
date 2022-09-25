@@ -16,7 +16,7 @@
 }
 
 .packingList{
-    height: 200px; /*can change to auto once js has been completed*/
+    height: auto;
     border-radius: 8%;
     box-shadow: 10px lightslategray;
     position:fixed;
@@ -31,4 +31,24 @@
 
 .iternary .title{
     text-decoration: underline;
+}
+
+#tobring-list{
+margin-top: 10px;
+margin-left: 20px;
+font-size: large;
+list-style: inside; 
+}
+
+.packingBottomsSection{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#totalItems, #tobring-count {
+font-weight: 600;
+}
+#clear-button {
+    margin-top: 20px;
 }
