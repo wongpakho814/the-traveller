@@ -3,23 +3,23 @@
 //Country is an optional parameter - OpenWeather implementation - Country code is an optional parameter which is undefined by default unless it is passed a value
 async function geocodeLocation(locationName, apiKey, countryCode = undefined) {
     let apiEndpoint = '';
-    
+
     if (countryCode !== undefined)
         apiEndpoint = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName},${countryCode}&limit=5&appid=${apiKey}`;
-                       
+
     else
         apiEndpoint = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=5&appid=${apiKey}`;
 
     const response = await fetch(apiEndpoint);
 
     if (response.status !== 200)
-        throw new Error (`Geocoding failed. Status is: ${response.status} \nStatus Text: ${response.statusText}`);
-    
+        throw new Error(`Geocoding failed. Status is: ${response.status} \nStatus Text: ${response.statusText}`);
+
     let data = await response.json();
 
     if (data.length === 0)
-        throw new Error `Location does not exist`
-    else 
+        throw new Error`Location does not exist`
+    else
         return data;
 }
 
@@ -30,31 +30,31 @@ async function reverseGeocode(lat, lon, apiKey) {
     const response = await fetch(apiEndpoint);
 
     if (response.status !== 200)
-        throw new Error (`Geocoding failed`);
-    
+        throw new Error(`Geocoding failed`);
+
     let data = await response.json();
 
     if (data.length === 0)
-        throw new Error `Location does not exist`
-    else 
+        throw new Error`Location does not exist`
+    else
         return data;
 }
 
 
-async function orsGeocodeCity (locationName, apiKey){
-    let layer = 'locality'
+async function orsGeocodeCity(locationName, apiKey) {
+    let layer = 'locality'; // Search only for cities or larger localities
     let apiEndpoint = `https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${locationName}&layers=${layer}`;
 
     const response = await fetch(apiEndpoint);
 
     if (response.status !== 200)
-        throw new Error (`Geocoding failed`);
-    
+        throw new Error(`Geocoding failed`);
+
     let data = await response.json();
 
     if (data.features.length === 0)
-        throw new Error `Location does not exist`
-    else 
+        throw new Error`Location does not exist`
+    else
         return data;
 
 }
@@ -62,11 +62,12 @@ async function orsGeocodeCity (locationName, apiKey){
 
 
 
-async function searchForTouristPOI (boundingBox, locationPoint, apiKey){
-    
+async function searchForTouristPOI(boundingBox, locationPoint, apiKey) {
+
+
     let apiEndpoint = 'https://api.openrouteservice.org/pois';
 
-    const response = await fetch (apiEndpoint, {
+    const response = await fetch(apiEndpoint, {
         'method': 'POST',
         'headers': {
             'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; chasrset=utf-8',
@@ -76,49 +77,41 @@ async function searchForTouristPOI (boundingBox, locationPoint, apiKey){
         body: JSON.stringify({
             request: 'pois',
             geometry: {
-                bbox:boundingBox,
+                bbox: boundingBox,
                 geojson: {
                     type: 'Point',
                     coordinates: locationPoint,
                 },
-                buffer: 200,
+                buffer: 2000,
             },
-            //limit: 100,
+            limit: 500,
+            filters: {
+                category_ids: [308, 309, 310],
+                category_group_ids: [130, 220, 620]
+            }
         })
     })
-    
+
     if (response.status !== 200) {
-        throw new Error (`Failed to get POIs - Status code: ${response.status} \nStatus text: ${response.statusText}`)
+        throw new Error(`Failed to get POIs - Status code: ${response.status} \nStatus text: ${response.statusText}`)
     }
-    
+
     const data = response.json();
 
     return data;
-    
-    
-    
-    /*
-    example XMLHttpRequest provided by API
-    let request = new XMLHttpRequest();
 
-    request.open('POST', "https://api.openrouteservice.org/pois");
-
-    request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('Authorization', apiKey);
-
-    request.onreadystatechange = function () {
-    if (this.readyState === 4) {
-        console.log('Status:', this.status);
-        console.log('Headers:', this.getAllResponseHeaders());
-        console.log('Body:', this.responseText);
-    }
-    };
-
-    const body = '{"request":"pois","geometry":{"bbox":[[8.8034,53.0756],[8.7834,53.0456]],"geojson":{"type":"Point","coordinates":[8.8034,53.0756]},"buffer":200}}';
-
-    request.send(body);
-    */
 }
 
+//Accpets an array of [lon, lat] and uses this to construct a valid bounding box for geolocation, poi and route services calculations
+// creates a bounding box approximately 5.5km by 5.5km by adding 0.025 degrees around the central point provided for a total of 0.05 degrees or approximately 5.5km (1 degrees of lat or lon is approxaimately 111km - https://www.johndcook.com/how_big_is_a_degree.html)
+//return format is in [[min longitude, min latitude], [max longitude, max latitude]]
+function calculateBoundingBox (geoPoint) {
+    let minlon = parseFloat((geoPoint[0] - 0.025).toFixed(6));
+    let minlat = parseFloat((geoPoint[1] - 0.025).toFixed(6));
+
+    let maxlon = parseFloat((geoPoint[0] + 0.025).toFixed(6));
+    let maxlat = parseFloat((geoPoint[1] + 0.025).toFixed(6));
+    
+    return [[minlon, minlat], [maxlon, maxlat]];
+}
 
