@@ -41,45 +41,46 @@ function init(){
     var storedPackingList = JSON.parse(localStorage.getItem("toPack"));
 
     // if list is not blank put saved packing list in to pack array 
-if (storedPackingList !== null){
-    toPack = storedPackingList;
+    if (storedPackingList !== null){
+        toPack = storedPackingList;
+    }
+
+    renderToPack();
 }
 
-renderToPack();
-}
 //stringify and saves key and to pack array to localstorage 
 function savePackingList(){
-localStorage.setItem("toPack", JSON.stringify(toPack)); 
+    localStorage.setItem("toPack", JSON.stringify(toPack)); 
 }
 
 packingForm.addEventListener("submit", function(event){
-event.preventDefault();
+    event.preventDefault();
 
-var packingText = packingInput.value.trim();
-// stops function if blank input 
-if (packingText === ""){
-    return; 
-}
+    var packingText = packingInput.value.trim();
+    // stops function if blank input 
+    if (packingText === ""){
+        return; 
+    }
 
-// adds new item to to pack array and clears input 
-toPack.push(packingText);
-packingInput.value = ""; 
+    // adds new item to to pack array and clears input 
+    toPack.push(packingText);
+    packingInput.value = ""; 
 
-//stores updated items to  localstorage and re-render the list; 
-savePackingList();
-renderToPack();
+    //stores updated items to  localstorage and re-render the list; 
+    savePackingList();
+    renderToPack();
 
 });
 
 packingList.addEventListener("click", function(event){
-var element = event.target;
+    var element = event.target;
 
-if (element.matches("button") === true ){
-    var index = element.parentElement.getAttribute("data-index"); 
-    toPack.splice(index, 1); 
-    savePackingList();
-    renderToPack();
-}
+    if (element.matches("button") === true ){
+        var index = element.parentElement.getAttribute("data-index"); 
+        toPack.splice(index, 1); 
+        savePackingList();
+        renderToPack();
+    }
 })
 
 clearBtn.addEventListener("click",function(){
@@ -91,4 +92,3 @@ clearBtn.addEventListener("click",function(){
 
 
 init();
-

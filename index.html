@@ -13,39 +13,39 @@
 
 <body>
     <header class="title is-2 mb-3">
-        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#">The Traveller</a>
             </div>
         </nav>
     </header>
 
-
     <main>
-        <section class="columns mt-5" id="search-section.">
-            <div class="column is-10 is-offset-1 field has-addons">
-                <div class="control is-expanded">
-                    <input class="input is-rounded is-fullwidth" type="text" placeholder="Enter a city here">
+        <section class="columns mt-5" id="search-section">
+            <form class="column field mx-5" id="input-form"> 
+                <div class="columns">
+                    <div class="column control p-3">
+                        <label class="label">City name: </label>
+                        <input class="input is-rounded is-fullwidth" type="text" id="city-name" placeholder="London">
+                    </div>
+                    <div class="column control p-3">
+                        <label class="label">Start date: </label>
+                        <input class="input is-rounded" type="date" id="start-date" name="trip-start">
+                    </div>
+                    <div class="column control p-3">
+                        <label class="label">End date: </label>
+                        <input class="input is-rounded" type="date" id="end-date" name="trip-end">
+                    </div>
                 </div>
-                <div class="control is-expanded">
-                    <input class="input" type="date" id="start-date" name="trip-start">
-                </div>
-                <div class="control is-expanded">
-                    <input class="input" type="date" id="end-date" name="trip-end">
-                </div>
-                <div class="control">
+                <div class="control p-3">
                     <button class="button is-primary is-rounded">Search</button>
                 </div>
-            </div>
+            </form>
         </section>
         <section class="ml-3 mt-5" id="weather-section">
-            <p class="title is-3 mb-5">Weather forecast: </p>
-            <div class="columns mx-3 mb-5">
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
+            <p class="title is-3 mb-5">Weather forecast for the next 7 days: </p>
+            <div class="mx-3 mb-5 forecast-div">
+                <p id="weather-hint"><i>The weather will be shown here after you search for a city!</i></p>
             </div>
         </section>
         <section class="ml-3 mt-5" id="hotel-section">
@@ -117,12 +117,11 @@
                   </div>
             </div>
         </section>
-
-
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/weather-api.js"></script>
 </body>
 
 </html>
