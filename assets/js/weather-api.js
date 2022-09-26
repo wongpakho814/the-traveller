@@ -4,9 +4,6 @@ var apiKey = "2f8fa537b9d9c6dee91715b6634d3f8e"; // The personal API Key
 function formSubmitHandler(event) {
     event.preventDefault();
 
-    $(".forecast-div").addClass("columns");
-    $("#weather-hint").hide();
-
     let city = $("#city-name").val();
   
     if (city) {
@@ -31,6 +28,8 @@ function getCityCoords(name) {
                     // console.log(data);
                     // Check if the API has returned any results
                     if (data.length !== 0) {
+                        $(".forecast-div").addClass("columns");
+                        $("#weather-hint").hide();
                         lat = data[0].lat;
                         lon = data[0].lon;
                         getCityWeather(lat, lon, name);

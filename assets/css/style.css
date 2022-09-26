@@ -19,6 +19,18 @@ h2 {
     color: var(--darkBlue) !important;
 }
 
+#input-form {
+    position: relative;
+}
+
+.control button {
+    position: absolute;
+    width: 30%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
 .forecast-div, .weather-div, .hotel-div {
     height: 250px;
 }
@@ -28,7 +40,7 @@ h2 {
     background-color: var(--darkBlue);
 }
 
-.forecast-div, .weather-div {
+.control label, .forecast-div, .weather-div {
     text-align: center;
 }
 
