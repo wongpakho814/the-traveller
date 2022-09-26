@@ -13,13 +13,12 @@
 
 <body>
     <header class="title is-2 mb-3">
-        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#">The Traveller</a>
             </div>
         </nav>
     </header>
-
 
     <main>
         <section class="columns mt-5" id="search-section">
@@ -40,12 +39,8 @@
         </section>
         <section class="ml-3 mt-5" id="weather-section">
             <p class="title is-3 mb-5">Weather forecast: </p>
-            <div class="columns mx-3 mb-5">
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
-                <div class="column mr-5 forecast-div"></div>
+            <div class="mx-3 mb-5 forecast-div">
+                <p id="weather-hint"><i>The weather will be shown here after you search for a city!</i></p>
             </div>
         </section>
         <section class="ml-3 mt-5" id="hotel-section">
@@ -117,8 +112,6 @@
                   </div>
             </div>
         </section>
-
-
     </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

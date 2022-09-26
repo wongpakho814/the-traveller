@@ -1,18 +1,47 @@
 :root {
     --lightgray: hsl(0, 0%, 96%);
     --darkgray: #363636;
+    --yellow: #f4b41a;
+    --darkBlue: #143d59;
     --border-radius: .3rem;
 }
 
-
-.navbar-item:hover {
-    color: var(--darkgray) !important;
-    background-color: var(--lightgray) !important;
+h2 {
+    font-size: 150%;
 }
 
-.forecast-div, .hotel-div {
-    background-color: var(--lightgray);
+.navbar {
+    background-color: var(--yellow);
+    color: var(--darkBlue);
+}
+
+.navbar-item:hover {
+    color: var(--darkBlue) !important;
+}
+
+.forecast-div, .weather-div, .hotel-div {
     height: 250px;
+}
+
+.weather-div {
+    color: whitesmoke;
+    background-color: var(--darkBlue);
+}
+
+.forecast-div, .weather-div {
+    text-align: center;
+}
+
+.forecast-div p {
+    padding-top: 70px;
+}
+
+.weather-div p {
+    padding: 5px;
+}
+
+.hotel-div {
+    background-color: var(--lightgray);
 }
 
 .packingList{
@@ -47,7 +76,7 @@ list-style: inside;
 }
 
 #totalItems, #tobring-count {
-font-weight: 600;
+    font-weight: 600;
 }
 #clear-button {
     margin-top: 20px;
