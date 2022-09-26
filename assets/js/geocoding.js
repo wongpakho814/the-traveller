@@ -61,11 +61,15 @@ async function orsGeocodeCity(locationName, apiKey) {
 
 
 
+//Provide a single point in an array of [latitude, longitude] as location point and 
+async function searchForTouristPOI(locationPoint, apiKey) {
 
-async function searchForTouristPOI(boundingBox, locationPoint, apiKey) {
-
+    let boundingBox = calculateBoundingBox(locationPoint);
 
     let apiEndpoint = 'https://api.openrouteservice.org/pois';
+
+    let categoryIDs = [308, 309, 310];
+    let categoryGroupIDs = [130, 220, 620];
 
     const response = await fetch(apiEndpoint, {
         'method': 'POST',
@@ -86,8 +90,8 @@ async function searchForTouristPOI(boundingBox, locationPoint, apiKey) {
             },
             limit: 500,
             filters: {
-                category_ids: [308, 309, 310],
-                category_group_ids: [130, 220, 620]
+                category_ids: categoryIDs,
+                category_group_ids: categoryGroupIDs,
             }
         })
     })
