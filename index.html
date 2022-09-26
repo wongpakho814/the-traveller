@@ -106,11 +106,15 @@
             <div class="card column is-2.5 packingList">
                 <h2 class="title is-3">&#129523; Packing List:</h2>
                 <form id="tobring-form" method="POST">
-                    <label class="subtitle is-5" for="tobring-text">I need to bring: </label>
+                    <label class="subtitle is-6" for="tobring-text">I need to bring: </label>
                     <input type="text" placeholder="Phone charger" name="tobring-text" id="tobring-text" />
                 </form>
-                <p id="totalItems">Total items: <span id="tobring-count">0</span></p>
                 <ul id="tobring-list"></ul>
+                <br>
+                <div class = "packingBottomSection level">
+                <p  id="totalItems">Total items: <span id="tobring-count">0</span></p>
+                    <button class="button is-link is-light is-small" id="clear-button" >Clear list</button>
+                  </div>
             </div>
         </section>
 
