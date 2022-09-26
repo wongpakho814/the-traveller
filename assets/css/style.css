@@ -93,3 +93,16 @@ list-style: inside;
 #clear-button {
     margin-top: 20px;
 }
+
+/* itinerary-list */
+#left-list-box {
+    width: 40%;
+    height: auto;
+    border: 5px;
+    border: rgb(38, 112, 77);
+}
+
+#right-list-box{
+    width: 40%;
+    height: auto;
+}

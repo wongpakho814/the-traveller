@@ -22,7 +22,7 @@
 
     <main>
         <section class="columns mt-5" id="search-section">
-            <form class="column field mx-5" id="input-form"> 
+            <form class="column field mx-5" id="input-form">
                 <div class="columns">
                     <div class="column control p-3">
                         <label class="label">City name: </label>
@@ -58,10 +58,39 @@
                 <div class="column mr-5 hotel-div"></div>
             </div>
         </section>
+        <!-- this is an initial trial of the attractions list -->
+        <div id="bix-box">
+            <section id="left-list-box">
+                <div class="title is-3 ml-3 mb-3 attractions">Events On / Attractions:</div>
+                <div class="attractionInput">
+                    <ul class="first-list">
+                        <li class="first-list-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                            massa
+                            urna, sodales id malesuada nec, vulputate at sapien. Nullam egestas.
+                            <button>➕</button>
+                        </li>
+                        <li class="first-list-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius
+                            venenatis odio, a scelerisque ante iaculis quis. Duis facilisis nulla.
+                            <button>➕</button>
+                        </li>
+                        <li class="first-list-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+                            suscipit molestie mi, eu vulputate lacus rhoncus ac. Nullam libero justo.
+                            <button>➕</button>
+                        </li>
+                        <li class="first-list-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                            tincidunt
+                            odio nec augue accumsan, lacinia lobortis orci euismod. Nunc vulputate.
+                            <button>➕</button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-        <section>
-            <div class="title is-3 ml-3 mb-3 attractions">Events On / Attractions:</div>
-        </section>
+            <section id="right-list-box">
+                <div class="title is-3 ml-3 mb-3 attractions">My list</div>
+                <div class="user-list"></div>
+            </section>
+        </div>
 
         <section class="column mt-5" id="iternary-section">
             <p class="title is-3 ">Iternary:</p>
@@ -111,10 +140,10 @@
                 </form>
                 <ul id="tobring-list"></ul>
                 <br>
-                <div class = "packingBottomSection level">
-                <p  id="totalItems">Total items: <span id="tobring-count">0</span></p>
-                    <button class="button is-link is-light is-small" id="clear-button" >Clear list</button>
-                  </div>
+                <div class="packingBottomSection level">
+                    <p id="totalItems">Total items: <span id="tobring-count">0</span></p>
+                    <button class="button is-link is-light is-small" id="clear-button">Clear list</button>
+                </div>
             </div>
         </section>
     </main>
