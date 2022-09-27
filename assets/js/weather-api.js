@@ -35,16 +35,16 @@ function getCityCoords(name) {
                         getCityWeather(lat, lon, name);
                     }
                     else {
-                        alert("No results are found!");
+                        $("#weather-hint").textContent = "No results are found for " + '"' + name + '"' + "!";
                     }
                 });
             } 
             else {
-                alert("Error: " + response.statusText);
+                $("#weather-hint").textContent = "Error: " + response.statusText;
             }
         })
         .catch(function (error) {
-            alert("Unable to connect to OpenWeather");
+            $("#weather-hint").textContent = "Unable to connect to OpenWeather";
         });
 };
 
@@ -62,11 +62,11 @@ function getCityWeather(lat, lon, name) {
                 });
             } 
             else {
-                alert("Error: " + response.statusText);
+                $("#weather-hint").textContent = "Error: " + response.statusText;
             }
         })
         .catch(function (error) {
-            alert("Unable to connect to OpenWeather");
+            $("#weather-hint").textContent = "Unable to connect to OpenWeather";
         });
 }
 
