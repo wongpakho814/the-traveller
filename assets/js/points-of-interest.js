@@ -58,9 +58,9 @@ async function getPOI (lat, lon){
 
 
 // Test function. 
-async function testFn (){
-    let pois = await getPOI(151.209421, -33.868633); // melbourne
-    console.log(pois);
-}
+// async function testFn (){
+//     let pois = await getPOI(151.209421, -33.868633); // melbourne
+//     console.log(pois);
+// }
 
-testFn();
+// testFn();
