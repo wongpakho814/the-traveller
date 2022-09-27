@@ -100,7 +100,7 @@ async function searchForTouristPOI(locationPoint, apiKey) {
         throw new Error(`Failed to get POIs - Status code: ${response.status} \nStatus text: ${response.statusText}`)
     }
 
-    const data = response.json();
+    const data = await response.json();
 
     return data;
 

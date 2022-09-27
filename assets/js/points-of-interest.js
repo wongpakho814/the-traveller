@@ -18,6 +18,7 @@ async function getPOI (lat, lon){
 
         //Returned values will always contain: Coordinates (as an array), a geojson point (this can be ignored safely and is there just incase we need it), an array of category objects, the name of the point of interest, the distance it is from the point provided in Meters
         let poi = {
+            id: poiCollection.features[i].properties.osm_id,
             coordinates: poiCollection.features[i].geometry.coordinates,
             geojson: poiCollection.features[i].geometry,
             categories: [], // for in loop over categories to update soon
