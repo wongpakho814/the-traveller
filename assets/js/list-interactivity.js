@@ -5,6 +5,12 @@ function addEventHandler(event) {
     userListEl.appendChild(copiedListItem);
 }
 
+// Handles the "-" button in the user list
+function removeEventHandler(event) {
+    let userListEl = document.querySelector(".user-list");
+    event.target.closest("li").innerHTML = "";
+}
+
 // Clone the list item to copy over to another list
 function cloneItem(item) {
     let newListEl = document.createElement("li");
@@ -20,3 +26,4 @@ function cloneItem(item) {
 }
 
 $(".first-list").on("click", addEventHandler);
+$(".user-list").on("click", removeEventHandler);
