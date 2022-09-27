@@ -11,7 +11,7 @@ async function getPOI (lat, lon){
     for(let i = 0; i < poiCollection.features.length; i++){
         
         //Skip loop if features have no tags/name - We dont care about these because they are difficult to 
-        if(!poiCollection.features[i].properties.osm_tags){
+        if(!poiCollection.features[i].properties.osm_tags || poiCollection.features[i].properties.osm_tags === undefined){
             //console.log(i); 
             continue;
         }
@@ -58,9 +58,9 @@ async function getPOI (lat, lon){
 
 
 // Test function. 
-// async function testFn (){
-//     let pois = await getPOI(151.209421, -33.868633); // melbourne
-//     console.log(pois);
-// }
+async function testFn (){
+    let pois = await getPOI(151.209421, -33.868633); // melbourne
+    console.log(pois);
+}
 
-// testFn();
+testFn();
