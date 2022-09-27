@@ -1,4 +1,6 @@
 var apiKey = "2f8fa537b9d9c6dee91715b6634d3f8e"; // The personal API Key
+var lat = 0;
+var lon = 0;
 
 // Handles the submit button, which fetches the city name that the user input and get the coordinates of the city
 function formSubmitHandler(event) {
@@ -17,22 +19,22 @@ function formSubmitHandler(event) {
 // Calling the OpenWeather Direct geocoding API to get the latitude and longitude of the given city name
 function getCityCoords(name) {
     let apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + name + "&appid=" + apiKey;
-    let lat = 0;
-    let lon = 0;
   
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 // console.log(response);
-                response.json().then(function (data) {
-                    // console.log(data);
+                response.json().then(async function (data) {
+                    console.log(data);
                     // Check if the API has returned any results
                     if (data.length !== 0) {
                         $(".forecast-div").addClass("columns");
                         $("#weather-hint").hide();
                         lat = data[0].lat;
                         lon = data[0].lon;
-                        getCityWeather(lat, lon, name);
+                        // Call the function to render the event lists here after retrieving the lat and lon from the Open Weather API
+                        renderEvents();
+                        getCityWeather(name);
                     }
                     else {
                         $("#weather-hint").textContent = "No results are found for " + '"' + name + '"' + "!";
@@ -49,7 +51,7 @@ function getCityCoords(name) {
 };
 
 // Calling the OpenWeather 7 days daily forecast API to get the weather of the given city's latitude and longitude
-function getCityWeather(lat, lon, name) {
+function getCityWeather(name) {
     let apiUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
 
     fetch(apiUrl)
@@ -57,7 +59,7 @@ function getCityWeather(lat, lon, name) {
             if (response.ok) {
                 // console.log(response);
                 response.json().then(function (data) {
-                    console.log(data);
+                    // console.log(data);
                     displayWeather(data, name);
                 });
             } 
@@ -84,7 +86,7 @@ function displayWeather(weather, city) {
     }
 }
 
-// Creates and renders the HTML for today's weather
+// Creates and renders the HTML for the next 7 days' weather
 function renderTodayWeather(i, weather, city) {
     let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
     let DT = new Date(weather.daily[i].dt * 1000); 
