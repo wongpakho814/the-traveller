@@ -18,7 +18,7 @@ async function geocodeLocation(locationName, apiKey, countryCode = undefined) {
     let data = await response.json();
 
     if (data.length === 0)
-        throw new Error`Location does not exist`
+        throw new Error(`Location does not exist`);
     else
         return data;
 }
@@ -35,7 +35,7 @@ async function reverseGeocode(lat, lon, apiKey) {
     let data = await response.json();
 
     if (data.length === 0)
-        throw new Error`Location does not exist`
+        throw new Error(`Location does not exist`);
     else
         return data;
 }
@@ -53,7 +53,7 @@ async function orsGeocodeCity(locationName, apiKey) {
     let data = await response.json();
 
     if (data.features.length === 0)
-        throw new Error`Location does not exist`
+        throw new Error(`Location does not exist`);
     else
         return data;
 
@@ -86,7 +86,7 @@ async function searchForTouristPOI(locationPoint, apiKey) {
                     type: 'Point',
                     coordinates: locationPoint,
                 },
-                buffer: 2000,
+                buffer: 1900,
             },
             limit: 500,
             filters: {
