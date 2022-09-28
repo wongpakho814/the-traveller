@@ -32,6 +32,27 @@ function getCityCoords(name) {
                         $("#weather-hint").hide();
                         lat = data[0].lat;
                         lon = data[0].lon;
+
+                        //Saves city name and city coordinates to local storage
+                      
+                        var cityList = [];
+                        
+                        var citySearch = {
+                            cityName: name,
+                            cityLat: lat,
+                            cityLon: lon,
+                            poi:{}};
+                        
+                            var storedCityList = JSON.parse(localStorage.getItem("savedCities"));
+                            if(storedCityList !== null){
+                            cityList = storedCityList;}
+                            cityList.push(citySearch);
+                        
+                        localStorage.setItem("savedCities",JSON.stringify(cityList));
+                        
+                            
+                    
+
                         getCityWeather(lat, lon, name);
                     }
                     else {
@@ -128,5 +149,6 @@ function capitalizeWords(sentence) {
 // Initialize the page by adding the event listener to the submit buttons
 function init() {
     $("#input-form").on("submit", formSubmitHandler);
+
 }
 init();
