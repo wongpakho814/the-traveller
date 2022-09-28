@@ -72,7 +72,7 @@ $("#modal-confirm").click(function() {
     listItem.closest("ul").removeChild(currentListItem);
     firstListEl.appendChild(copiedListItem);
     modal.style.display = "none";
-}); 
+});
 
 // Initiate the script by adding event listeners to the "+" and "-" buttons
 function init() {
