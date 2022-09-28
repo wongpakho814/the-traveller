@@ -13,7 +13,7 @@ async function renderEvents() {
         newEventEl.textContent = data[i].name + " ";
         let addBtnEL = document.createElement("button");
         addBtnEL.setAttribute("class", "add-btn");
-        addBtnEL.textContent = "+";
+        addBtnEL.textContent = "➕";
         newEventEl.appendChild(addBtnEL);
         eventULEl.appendChild(newEventEl);
     }
