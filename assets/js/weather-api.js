@@ -21,7 +21,7 @@ function formSubmitHandler(event) {
         }
     } 
     else {
-        alert('Please enter a city username');
+        $("#weather-hint").html("Please enter a city name!");
     }
 };
 
@@ -64,16 +64,16 @@ function getCityCoords(name) {
                         getCityWeather(lat, lon, name);
                     }
                     else {
-                        $("#weather-hint").textContent = "No results are found for " + '"' + name + '"' + "!";
+                        $("#weather-hint").html("No results are found for " + '"' + name + '"' + "!");
                     }
                 });
             } 
             else {
-                $("#weather-hint").textContent = "Error: " + response.statusText;
+                $("#weather-hint").html("Error: " + response.statusText);
             }
         })
         .catch(function (error) {
-            $("#weather-hint").textContent = "Unable to connect to OpenWeather";
+            $("#weather-hint").html("Unable to connect to OpenWeather");
         });
 };
 

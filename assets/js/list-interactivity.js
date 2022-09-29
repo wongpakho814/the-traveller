@@ -21,7 +21,7 @@ async function renderEvents(lat, lon) {
         newEventEl.textContent = data[i].name + " ";
         let addBtnEL = document.createElement("button");
         addBtnEL.setAttribute("class", "add-btn");
-        addBtnEL.setAttribute("data-city", data[i].city);
+        newEventEl.setAttribute("data-city", data[i].city);
         addBtnEL.textContent = "➕";
         newEventEl.appendChild(addBtnEL);
         eventULEl.appendChild(newEventEl);
@@ -33,7 +33,7 @@ async function addEventHandler(event) {
     let userListEl = document.querySelector(".user-list");
     let currentListItem = event.target.closest("li");
     let copiedListItem = cloneItem(currentListItem, "remove-btn");
-    let city = event.target.getAttribute("data-city")
+    let city = currentListItem.getAttribute("data-city")
     let cityList = JSON.parse(localStorage.getItem('savedCities'));
     //If cityList is not empty and contains the 
     if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
@@ -53,8 +53,19 @@ async function addEventHandler(event) {
 // Handles the "-" button in the user list
 function removeEventHandler(event) {
     let modalContent = document.querySelector(".modal-content-p");
-    modalContent.textContent = "You're about to remove " + event.target.closest("li").getAttribute("data-id") + ", are you sure?";
+    modalContent.textContent = "You're about to remove " + event.target.closest("li").textContent.replace("➖", "").slice(0, -1); + ", are you sure?";
     modal.style.display = "block";
+    let currentListItem = event.target.closest("li");
+    let city = currentListItem.getAttribute("data-city");
+    let cityList = JSON.parse(localStorage.getItem('savedCities'));
+    //If cityList is not empty and contains the 
+    if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
+    {
+        const i = cityList.findIndex(element => element.cityName.toLowerCase() === city.toLowerCase()); 
+        let poi = cityList[i].myToDoList.findIndex(element => element.name.toLowerCase() === city.toLowerCase());
+        cityList[i].myToDoList.splice(poi, 1);
+        localStorage.setItem("savedCities",JSON.stringify(cityList));
+    }
     currListItemID = event.target.closest("li").getAttribute("data-id");
 }
 
@@ -65,7 +76,8 @@ function cloneItem(item, btnClass) {
     newListEl.textContent = item.textContent;
     // Remove the text of the button since textContent get the texts in the child elements as well
     newListEl.textContent = newListEl.textContent.replace("➕", "").slice(0, -1);
-    newListEl.setAttribute("data-id", newListEl.textContent);
+    newListEl.setAttribute("data-id", item.getAttribute("data-id"));
+    newListEl.setAttribute("data-city", item.getAttribute("data-city"));
     newListEl.textContent = newListEl.textContent + " ";
     // Create the "-" button in the user's list
     let newListBtnEl = document.createElement("button");
