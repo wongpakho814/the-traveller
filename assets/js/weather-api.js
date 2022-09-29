@@ -85,6 +85,7 @@ function getCityWeather(lat, lon, name) {
                 response.json().then(function (data) {
                     // console.log(data);
                     displayWeather(data, name);
+                    
                 });
                 renderEvents(lat, lon);
             } 
@@ -156,6 +157,7 @@ function capitalizeWords(sentence) {
 // Initialize the page by adding the event listener to the submit buttons
 function init() {
     $("#input-form").on("submit", formSubmitHandler);
-
+   
 }
+
 init();
