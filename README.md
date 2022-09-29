@@ -48,7 +48,6 @@ The technologies that we will include in this project are:
 - CSS framework [Bulma CSS](https://bulma.io/documentation/overview/start/)
 - Open Weather API for weather and geocoding [Open Weather API](https://openweathermap.org/api)
 -  An Attractions/POI API [Foursquare](https://developer.foursquare.com/docs/overview)
-- [moment.js](https://momentjs.com/docs/)
 - [JQuery.com](https://jquery.com)
 
 ## Potential additonal APIs
@@ -59,6 +58,12 @@ If we have time to use them, we may include:
 
 ## License
 This product is under MIT License 
+
+## Credits 
+- James Prince 
+- Pak Ho Wong
+- Long Pham
+- Vivian Lee
 
 
 
