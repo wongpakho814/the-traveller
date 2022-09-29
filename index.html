@@ -42,6 +42,7 @@
                 </div>
             </form>
         </section>
+
         <section class="ml-3 mt-5" id="weather-section">
             <p class="title is-3 mb-5">Weather forecast for the next 7 days: </p>
             <div class="mx-3 mb-5 forecast-div">
@@ -78,18 +79,18 @@
         </div>
 
         <section>
-            <div class="card column is-2.5 packingList">
-                <h2 class="title is-3">&#129523; Packing List:</h2>
-                <form id="tobring-form" method="POST">
-                    <label class="subtitle is-6" for="tobring-text">I need to bring: </label>
-                    <input type="text" placeholder="Phone charger" name="tobring-text" id="tobring-text" />
+            <div class="card column is-2.5 shoppingList">
+                <h2 class="title is-3"> &#129523; Shopping List: </h2>
+                <form id="shopping-form" method="POST">
+                    <label class="subtitle is-6" for="shopping-text">I want to buy: </label>
+                    <input type="text" placeholder="Travel adapter" name="shopping-text" id="shopping-text" />
                 </form>
-                <ul id="tobring-list"></ul>
+                <ul id="shopping-list"></ul>
                 <br>
-                <div class="packingBottomSection level">
-                    <p id="totalItems">Total items: <span id="tobring-count">0</span></p>
-                    <button class="button is-link is-light is-small" id="clear-button">Clear list</button>
-                </div>
+                <div class = "shoppingBottomSection level">
+                <p  id="totalItems">Total items: <span id="shopping-count">0</span></p>
+                    <button class="button is-link is-light is-small" id="clear-button" >Clear list</button>
+                  </div>
             </div>
         </section>
     </main>
@@ -103,11 +104,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./assets/js/weather-api.js"></script>
-    <script src="./assets/js/geocoding.js"></script>
-    <script src="./assets/js/points-of-interest.js"></script>
-    <script src="./assets/js/list-interactivity.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/weather-api.js"></script>
 </body>
 
 </html>

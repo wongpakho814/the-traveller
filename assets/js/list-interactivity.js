@@ -8,12 +8,16 @@ async function renderEvents() {
     for (let i = 0; i < 10; i++) {
         let eventULEl = document.querySelector(".first-list");
         let newEventEl = document.createElement("li");
+
         newEventEl.setAttribute("class", "first-list-item box");
         newEventEl.setAttribute("data-id", data[i].id);
         newEventEl.textContent = data[i].name + " ";
+
         let addBtnEL = document.createElement("button");
+
         addBtnEL.setAttribute("class", "add-btn");
         addBtnEL.textContent = "+";
+        
         newEventEl.appendChild(addBtnEL);
         eventULEl.appendChild(newEventEl);
     }
