@@ -56,7 +56,7 @@ h2 {
     background-color: var(--lightgray);
 }
 
-.packingList{
+.shoppingList{
     height: auto;
     border-radius: 8%;
     box-shadow: 10px lightslategray;
@@ -74,20 +74,20 @@ h2 {
     text-decoration: underline;
 }
 
-#tobring-list{
+#shopping-list{
 margin-top: 10px;
 margin-left: 20px;
 font-size: large;
 list-style: inside; 
 }
 
-.packingBottomsSection{
+.shoppingBottomSection{
     display: flex;
     justify-content: space-between;
     text-align: center;
 }
 
-#totalItems, #tobring-count {
+#totalItems, #shopping-count {
     font-weight: 600;
 }
 #clear-button {
