@@ -1,6 +1,5 @@
 
-const orsAPI = '5b3ce3597851110001cf6248e6166b0f4e4d4741a8c6950dfe78e460';
-
+const fsAPI = 'fsq3gTR+vn6z9rNX3/C+A8iVWbIYIdcHkUajSPCoExvJ9Kc=';
 
 
 async function getTouristPOIfsq (lat, lon){
@@ -18,12 +17,9 @@ async function getTouristPOIfsq (lat, lon){
         {
             throw new Error (`Failed to invoke API`)
         }
-
         let data = await response.json();
         return data;
 }
-
-
 
 async function getPlaceInformation (fsqID){
     let apiEndpoint = `https://api.foursquare.com/v3/places/${fsqID}`

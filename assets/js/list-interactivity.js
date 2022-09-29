@@ -2,8 +2,8 @@ var currListItemID;
 var currListItem;
 
 // Renders the event list after retrieving data from the POI API call
-async function renderEvents() {
-    let data = await getPOI(lon, lat);
+async function renderEvents(lat, lon) {
+    let data = await getPOIlist(lat, lon);
     console.log(data);
     for (let i = 0; i < 10; i++) {
         let eventULEl = document.querySelector(".first-list");

@@ -1,6 +1,5 @@
 var apiKey = "2f8fa537b9d9c6dee91715b6634d3f8e"; // The personal API Key
-var lat = 0;
-var lon = 0;
+
 
 // Handles the submit button, which fetches the city name that the user input and get the coordinates of the city
 function formSubmitHandler(event) {
@@ -9,7 +8,17 @@ function formSubmitHandler(event) {
     let city = $("#city-name").val();
   
     if (city) {
-        getCityCoords(city);
+        //Check local storage and get the savedCities value
+        let cityList = JSON.parse(localStorage.getItem('savedCities'));
+        //If citylist is not empty and contains the 
+        if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
+        {
+            const i = cityList.findIndex(element => element.cityName.toLowerCase() === city.toLowerCase()); 
+            getCityWeather(cityList[i].cityLat, cityList[i].cityLon, cityList[i].cityName);
+        }
+        else {
+            getCityCoords(city);
+        }
     } 
     else {
         alert('Please enter a city username');
@@ -30,8 +39,8 @@ function getCityCoords(name) {
                     if (data.length !== 0) {
                         $(".forecast-div").addClass("columns");
                         $("#weather-hint").hide();
-                        lat = data[0].lat;
-                        lon = data[0].lon;
+                        let lat = data[0].lat;
+                        let lon = data[0].lon;
 
                         //Saves city name and city coordinates to local storage
                       
@@ -49,9 +58,6 @@ function getCityCoords(name) {
                             cityList.push(citySearch);
                         
                         localStorage.setItem("savedCities",JSON.stringify(cityList));
-                        
-                            
-                    
 
                         getCityWeather(lat, lon, name);
                     }
@@ -70,9 +76,8 @@ function getCityCoords(name) {
 };
 
 // Calling the OpenWeather 7 days daily forecast API to get the weather of the given city's latitude and longitude
-function getCityWeather(name) {
+function getCityWeather(lat, lon, name) {
     let apiUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
-
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
@@ -81,6 +86,7 @@ function getCityWeather(name) {
                     // console.log(data);
                     displayWeather(data, name);
                 });
+                renderEvents(lat, lon);
             } 
             else {
                 $("#weather-hint").textContent = "Error: " + response.statusText;
@@ -89,6 +95,7 @@ function getCityWeather(name) {
         .catch(function (error) {
             $("#weather-hint").textContent = "Unable to connect to OpenWeather";
         });
+
 }
 
 // Displays the weather data fetched from the API
