@@ -1,5 +1,6 @@
 var apiKey = "2f8fa537b9d9c6dee91715b6634d3f8e"; // The personal API Key
 
+
 // Handles the submit button, which fetches the city name that the user input and get the coordinates of the city
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -7,31 +8,39 @@ function formSubmitHandler(event) {
     let city = $("#city-name").val();
   
     if (city) {
-        getCityCoords(city);
+        //Check local storage and get the savedCities value
+        let cityList = JSON.parse(localStorage.getItem('savedCities'));
+        //If cityList is not empty and contains the 
+        if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
+        {
+            const i = cityList.findIndex(element => element.cityName.toLowerCase() === city.toLowerCase()); 
+            getCityWeather(cityList[i].cityLat, cityList[i].cityLon, cityList[i].cityName);
+        }
+        else {
+            getCityCoords(city);
+        }
     } 
     else {
-        alert('Please enter a city username');
+        $("#weather-hint").html("Please enter a city name!");
     }
 };
 
 // Calling the OpenWeather Direct geocoding API to get the latitude and longitude of the given city name
 function getCityCoords(name) {
     let apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + name + "&appid=" + apiKey;
-    let lat = 0;
-    let lon = 0;
   
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 // console.log(response);
                 response.json().then(function (data) {
-                    // console.log(data);
+                    console.log(data);
                     // Check if the API has returned any results
                     if (data.length !== 0) {
                         $(".forecast-div").addClass("columns");
                         $("#weather-hint").hide();
-                        lat = data[0].lat;
-                        lon = data[0].lon;
+                        let lat = data[0].lat;
+                        let lon = data[0].lon;
 
                         //Saves city name and city coordinates to local storage
                       
@@ -41,7 +50,9 @@ function getCityCoords(name) {
                             cityName: name,
                             cityLat: lat,
                             cityLon: lon,
-                            poi:{}};
+                            poi:{},
+                            myToDoList:[],
+                        };
                         
                             var storedCityList = JSON.parse(localStorage.getItem("savedCities"));
                             if(storedCityList !== null){
@@ -49,46 +60,45 @@ function getCityCoords(name) {
                             cityList.push(citySearch);
                         
                         localStorage.setItem("savedCities",JSON.stringify(cityList));
-                        
-                            
-                    
 
                         getCityWeather(lat, lon, name);
                     }
                     else {
-                        alert("No results are found!");
+                        $("#weather-hint").html("No results are found for " + '"' + name + '"' + "!");
                     }
                 });
             } 
             else {
-                alert("Error: " + response.statusText);
+                $("#weather-hint").html("Error: " + response.statusText);
             }
         })
         .catch(function (error) {
-            alert("Unable to connect to OpenWeather");
+            $("#weather-hint").html("Unable to connect to OpenWeather");
         });
 };
 
 // Calling the OpenWeather 7 days daily forecast API to get the weather of the given city's latitude and longitude
 function getCityWeather(lat, lon, name) {
     let apiUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + apiKey;
-
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 // console.log(response);
                 response.json().then(function (data) {
-                    console.log(data);
+                    // console.log(data);
                     displayWeather(data, name);
+                    
                 });
+                renderEvents(lat, lon);
             } 
             else {
-                alert("Error: " + response.statusText);
+                $("#weather-hint").textContent = "Error: " + response.statusText;
             }
         })
         .catch(function (error) {
-            alert("Unable to connect to OpenWeather");
+            $("#weather-hint").textContent = "Unable to connect to OpenWeather";
         });
+
 }
 
 // Displays the weather data fetched from the API
@@ -105,7 +115,7 @@ function displayWeather(weather, city) {
     }
 }
 
-// Creates and renders the HTML for today's weather
+// Creates and renders the HTML for the next 7 days' weather
 function renderTodayWeather(i, weather, city) {
     let months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
     let DT = new Date(weather.daily[i].dt * 1000); 
@@ -149,6 +159,7 @@ function capitalizeWords(sentence) {
 // Initialize the page by adding the event listener to the submit buttons
 function init() {
     $("#input-form").on("submit", formSubmitHandler);
-
+   
 }
+
 init();

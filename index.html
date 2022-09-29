@@ -22,19 +22,11 @@
 
     <main>
         <section class="columns mt-5" id="search-section">
-            <form class="column field mx-5" id="input-form"> 
+            <form class="column field mx-5" id="input-form">
                 <div class="columns">
-                    <div class="column control p-3">
-                        <label class="label">City name: </label>
+                    <div class="column control p-3 is-half is-offset-one-quarter">
+                        <label class="label is-size-2">City name</label>
                         <input class="input is-rounded is-fullwidth" type="text" id="city-name" placeholder="London">
-                    </div>
-                    <div class="column control p-3">
-                        <label class="label">Start date: </label>
-                        <input class="input is-rounded" type="date" id="start-date" name="trip-start">
-                    </div>
-                    <div class="column control p-3">
-                        <label class="label">End date: </label>
-                        <input class="input is-rounded" type="date" id="end-date" name="trip-end">
                     </div>
                 </div>
                 <div class="control p-3">
@@ -45,63 +37,29 @@
 
         <section class="ml-3 mt-5" id="weather-section">
             <p class="title is-3 mb-5">Weather forecast for the next 7 days: </p>
-            <div class="mx-3 mb-5 forecast-div">
-                <p id="weather-hint"><i>The weather will be shown here after you search for a city!</i></p>
+            <div class="mx-3 mb-5 forecast-div columns">
+                <p id="weather-hint">The weather will be shown here after you search for a city!</i></p>
             </div>
         </section>
-        <section class="ml-3 mt-5" id="hotel-section">
-            <p class="title is-3 mb-3">Hotels available: </p>
-            <div class="columns mx-3 mb-5">
-                <div class="column mr-5 hotel-div"></div>
-                <div class="column mr-5 hotel-div"></div>
-                <div class="column mr-5 hotel-div"></div>
-                <div class="column mr-5 hotel-div"></div>
-                <div class="column mr-5 hotel-div"></div>
-            </div>
-        </section>
-
-        <section>
-            <div class="title is-3 ml-3 mb-3 attractions">Events On / Attractions:</div>
-        </section>
-
-        <section class="column mt-5" id="iternary-section">
-            <p class="title is-3 ">Iternary:</p>
-            <div class="card columns ml-3 iternary">
-                <div class="tile is-ancestor">
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="title">Day 1</p>
-                            <p class="subtitle">Drag & drop your plans</p>
-                            <br>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="title">Day 2</p>
-                            <p class="subtitle"></p>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="title">Day 3</p>
-                            <p class="subtitle"></p>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="title">Day 4</p>
-                            <p class="subtitle"></p>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="title">Day 5</p>
-                            <p class="subtitle"></p>
-                        </article>
-                    </div>
+    
+        <!-- this is an initial trial of the attractions list -->
+        <div class="columns" id="bix-box">
+            <section id="left-list-box" class="column">
+                <div class="title is-3 ml-3 mb-3 attractions">Events On / Attractions:</div>
+                <div class="attractionInput">
+                    <ul class="first-list">
+                    </ul>
                 </div>
-            </div>
-        </section>
+            </section>
+            
+            <section id="right-list-box" class="column">
+                <div class="title is-3 ml-3 mb-3 attractions">My list</div>
+                <div class="user-list-div">
+                    <ul class="user-list">         
+                    </ul>
+                </div>
+            </section>
+        </div>
 
         <section>
             <div class="card column is-2.5 shoppingList">
@@ -120,9 +78,21 @@
         </section>
     </main>
 
+    <div id="remove-modal" class="modal">
+        <div class="modal-content pt-4 pl-4 pr-4 pb-1">
+            <span class="close">&times;</span>
+            <p class="modal-content-p"></p>
+            <button class="button is-primary is-rounded mt-3 mb-0" id="modal-confirm">Confirm</button>
+        </div>
+    </div>
+
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/js/geocoding.js"></script>
+    <script src="./assets/js/points-of-interest.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/weather-api.js"></script>
+    <script src="./assets/js/list-interactivity.js"></script>
 </body>
 
 </html>

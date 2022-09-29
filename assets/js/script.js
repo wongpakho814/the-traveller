@@ -26,11 +26,8 @@ function renderToBuy() {
         deleteBtn.style.marginBottom = "2px";
         deleteBtn.style.cursor = "grab";
         
-
     shoppingList.appendChild(listItem);
     listItem.appendChild(deleteBtn);
-        
-
     }}
 
 
@@ -88,7 +85,5 @@ clearBtn.addEventListener("click",function(){
     shoppingList.innerHTML= "";
     shoppingTotalCount.textContent = 0;
 })
-
-
 
 init()
