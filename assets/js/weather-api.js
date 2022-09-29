@@ -10,7 +10,7 @@ function formSubmitHandler(event) {
     if (city) {
         //Check local storage and get the savedCities value
         let cityList = JSON.parse(localStorage.getItem('savedCities'));
-        //If citylist is not empty and contains the 
+        //If cityList is not empty and contains the 
         if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
         {
             const i = cityList.findIndex(element => element.cityName.toLowerCase() === city.toLowerCase()); 
@@ -33,7 +33,7 @@ function getCityCoords(name) {
         .then(function (response) {
             if (response.ok) {
                 // console.log(response);
-                response.json().then(async function (data) {
+                response.json().then(function (data) {
                     console.log(data);
                     // Check if the API has returned any results
                     if (data.length !== 0) {
@@ -50,7 +50,9 @@ function getCityCoords(name) {
                             cityName: name,
                             cityLat: lat,
                             cityLon: lon,
-                            poi:{}};
+                            poi:{},
+                            myToDoList:[],
+                        };
                         
                             var storedCityList = JSON.parse(localStorage.getItem("savedCities"));
                             if(storedCityList !== null){

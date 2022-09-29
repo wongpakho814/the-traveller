@@ -3,7 +3,15 @@ var currListItem;
 
 // Renders the event list after retrieving data from the POI API call
 async function renderEvents(lat, lon) {
+    let cityList = JSON.parse(localStorage.getItem("savedCities"));
     let data = await getPOIlist(lat, lon);
+    if (cityList.some(element => element.cityLat === lat) && cityList.some(element => element.cityLon === lon)) {
+        const i = cityList.findIndex(element => element.cityLat === lat &&  element.cityLon === lon); 
+        cityList[i].poi = data;
+        localStorage.setItem("savedCities",JSON.stringify(cityList));
+    } 
+    
+    
     console.log(data);
     for (let i = 0; i < 10; i++) {
         let eventULEl = document.querySelector(".first-list");
@@ -13,6 +21,7 @@ async function renderEvents(lat, lon) {
         newEventEl.textContent = data[i].name + " ";
         let addBtnEL = document.createElement("button");
         addBtnEL.setAttribute("class", "add-btn");
+        addBtnEL.setAttribute("data-city", data[i].city);
         addBtnEL.textContent = "➕";
         newEventEl.appendChild(addBtnEL);
         eventULEl.appendChild(newEventEl);
@@ -24,6 +33,19 @@ async function addEventHandler(event) {
     let userListEl = document.querySelector(".user-list");
     let currentListItem = event.target.closest("li");
     let copiedListItem = cloneItem(currentListItem, "remove-btn");
+    let city = event.target.getAttribute("data-city")
+    let cityList = JSON.parse(localStorage.getItem('savedCities'));
+    //If cityList is not empty and contains the 
+    if (cityList !== null && cityList.some(element => element.cityName.toLowerCase() === city.toLowerCase()))
+    {
+        const i = cityList.findIndex(element => element.cityName.toLowerCase() === city.toLowerCase()); 
+        let toDo = {
+            id: currentListItem.getAttribute("data-id"),
+            name: currentListItem.textContent.slice(0,-1),
+        } 
+        cityList[i].myToDoList.push(toDo);
+        localStorage.setItem("savedCities",JSON.stringify(cityList));
+    }
     userListEl.appendChild(copiedListItem);
     currentListItem.remove();
 }

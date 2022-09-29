@@ -57,7 +57,7 @@ async function getPOIlist (lat, lon){
             distance: data.results[i].distance,
             related_places: data.results[i].related_places.children,
             address: data.results[i].location.formatted_address,
-            
+            city: data.results[i].location.locality,
         }
 
 
